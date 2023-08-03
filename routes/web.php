@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\manifiestos\VisualizacionController;
+use App\Http\Controllers\manifiestos\EscaneosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,5 @@ Route::get('/', function () {
 });
 
 Route::get('visualizacion', [VisualizacionController::class, 'index'])->name('visualizacion');
+Route::get('get-lecturas', [EscaneosController::class, 'getLecturas'])->name('get-lecturas');
 

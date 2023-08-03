@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\manifiestos\seleccion\SeccionesController;
-
+use App\Http\Controllers\manifiestos\EscaneosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +27,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Selección
 // ===============================================================================
 Route::get('get-secciones/{brazo}', [SeccionesController::class, 'getSecciones'])->name('get-secciones');
+Route::get('get-brazos', [SeccionesController::class, 'getBrazos'])->name('get-brazos');
+
+// ===============================================================================
+// Manifiestos
+// ===============================================================================
+Route::get('get-lecturas/{brazo}/{tramo}', [EscaneosController::class, 'getLecturas'])->name('get-lecturas');
