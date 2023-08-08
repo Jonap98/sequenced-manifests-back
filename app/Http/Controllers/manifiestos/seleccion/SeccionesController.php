@@ -24,12 +24,6 @@ class SeccionesController extends Controller
     }
 
     public function getSecciones($brazo) {
-
-        // $secciones = Secciones::select(
-        //     'nombre'
-        // )
-        // ->where('linea', $brazo)
-        // ->get();
         $secciones = PFEP::select(
             'DELIVERY_LOCATION as tramo'
         )
@@ -39,6 +33,20 @@ class SeccionesController extends Controller
 
         return response([
             'data' => $secciones
+        ]);
+    }
+
+    public function getUbicaciones($brazo, $seccion) {
+        $ubicaciones = PFEP::select(
+            'WHERE_USED_LINE as ubicacion'
+        )
+        ->where('WHERE_USED_ITEM', $brazo)
+        ->where('DELIVERY_LOCATION', $seccion)
+        ->distinct()
+        ->get();
+
+        return response([
+            'data' => $ubicaciones
         ]);
     }
 }

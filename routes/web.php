@@ -21,5 +21,12 @@ Route::get('/', function () {
 });
 
 Route::get('visualizacion', [VisualizacionController::class, 'index'])->name('visualizacion');
-Route::get('get-lecturas', [EscaneosController::class, 'getLecturas'])->name('get-lecturas');
+// Route::get('get-lecturas', [EscaneosController::class, 'getLecturas'])->name('get-lecturas');
+// Route::get('get-lecturas/{brazo}/{tramo}', [EscaneosController::class, 'getLecturas'])->name('get-lecturas');
+Route::get('get-lecturas-serie/{brazo}/{tramo}/{num_serie}', [EscaneosController::class, 'getLecturasByNumSerie'])->name('get-lecturas');
 
+Route::get('get-lecturas/{brazo}/{tramo}/{num_serie?}', [EscaneosController::class, 'getLecturas'])->name('get-lecturas');
+
+
+// Route::get('get-lecturas/{brazo}/{tramo}', [EscaneosController::class, 'getLecturas'])->name('get-lecturas');
+Route::get('get-lecturas/{brazo}/{tramo}/{ubicacion}', [EscaneosController::class, 'getLecturas'])->name('get-lecturas');

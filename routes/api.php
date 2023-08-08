@@ -28,8 +28,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // ===============================================================================
 Route::get('get-secciones/{brazo}', [SeccionesController::class, 'getSecciones'])->name('get-secciones');
 Route::get('get-brazos', [SeccionesController::class, 'getBrazos'])->name('get-brazos');
+Route::get('get-ubicaciones/{brazo}/{seccion}', [SeccionesController::class, 'getUbicaciones'])->name('get-ubicaciones');
 
 // ===============================================================================
 // Manifiestos
 // ===============================================================================
-Route::get('get-lecturas/{brazo}/{tramo}', [EscaneosController::class, 'getLecturas'])->name('get-lecturas');
+// Route::get('get-lecturas/{brazo}/{tramo}', [EscaneosController::class, 'getLecturas'])->name('get-lecturas');
+Route::get('get-lecturas/{brazo}/{tramo}/{ubicacion}', [EscaneosController::class, 'getLecturas'])->name('get-lecturas');
+Route::get('get-lecturas-serie/{brazo}/{tramo}/{ubicacion}/{num_serie}', [EscaneosController::class, 'getLecturasByNumSerie'])->name('get-lecturas');
+// Route::post('get-lecturas-serie', [EscaneosController::class, 'getLecturasByNumSerie'])->name('get-lecturas');
+
