@@ -14,7 +14,7 @@ use App\Models\TrackingBom;
 
 class EscaneosController extends Controller
 {
-    public function getLecturas($brazo, $tramo, $ubicacion) {
+    public function getLecturas($brazo, $tramo, $ubicacion, $cantidad) {
         set_time_limit(180);
 
         // Obtiene el scanner asignado al tramo seleccionado, puede estar el mismo nombre de tramo en varios brazos
@@ -36,7 +36,7 @@ class EscaneosController extends Controller
         )
         ->where('Escaner', $scanner->scanner)
         ->orderBy('Fecha', 'desc')
-        ->take(25)
+        ->take($cantidad ?? 10)
         ->get();
 
         $consultado = '';
@@ -73,7 +73,7 @@ class EscaneosController extends Controller
         ]);
     }
 
-    public function getLecturasByNumSerie($brazo, $tramo, $ubicacion, $num_serie) {
+    public function getLecturasByNumSerie($brazo, $tramo, $ubicacion, $num_serie, $cantidad) {
         set_time_limit(180);
 
         // Obtiene el scanner asignado al tramo seleccionado, puede estar el mismo nombre de tramo en varios brazos
@@ -110,7 +110,7 @@ class EscaneosController extends Controller
         ->where('Escaner', $scanner->scanner)
         // ->where('Fecha', '>=', $primerSerial->Fecha)
         ->orderBy('Fecha', 'desc')
-        ->take(23 + $num_serie)
+        ->take(($cantidad ?? 10) + $num_serie)
         ->get();
 
         $filtrados = [];

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\manifiestos\seleccion\SeccionesController;
 use App\Http\Controllers\manifiestos\EscaneosController;
+use App\Http\Controllers\sincronizacion\SincronizacionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +34,12 @@ Route::get('get-ubicaciones/{brazo}/{seccion}', [SeccionesController::class, 'ge
 // ===============================================================================
 // Manifiestos
 // ===============================================================================
-// Route::get('get-lecturas/{brazo}/{tramo}', [EscaneosController::class, 'getLecturas'])->name('get-lecturas');
-Route::get('get-lecturas/{brazo}/{tramo}/{ubicacion}', [EscaneosController::class, 'getLecturas'])->name('get-lecturas');
-Route::get('get-lecturas-serie/{brazo}/{tramo}/{ubicacion}/{num_serie}', [EscaneosController::class, 'getLecturasByNumSerie'])->name('get-lecturas');
-// Route::post('get-lecturas-serie', [EscaneosController::class, 'getLecturasByNumSerie'])->name('get-lecturas');
+Route::get('get-lecturas/{brazo}/{tramo}/{ubicacion}/{cantidad?}', [EscaneosController::class, 'getLecturas'])->name('get-lecturas');
+Route::get('get-lecturas-serie/{brazo}/{tramo}/{ubicacion}/{num_serie}/{cantidad?}', [EscaneosController::class, 'getLecturasByNumSerie'])->name('get-lecturas-serie');
+
+// ===============================================================================
+// Sincronizar
+// ===============================================================================
+Route::post('sincronizar/by-serial', [SincronizacionController::class, 'syncBySerial'])->name('sincronizar.by-serial');
+Route::post('sincronizar/by-difference', [SincronizacionController::class, 'syncByDifference'])->name('sincronizar.by-difference');
 
